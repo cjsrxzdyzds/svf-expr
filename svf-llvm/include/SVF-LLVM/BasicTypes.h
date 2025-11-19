@@ -72,7 +72,23 @@ typedef llvm::GlobalObject GlobalObject;
 typedef llvm::Use Use;
 typedef llvm::ModulePass ModulePass;
 typedef llvm::IRBuilder<> IRBuilder;
-#if LLVM_VERSION_MAJOR >= 12
+
+#if LLVM_VERSION_MAJOR >= 21
+// Wrapper class to provide legacy pass API compatibility for LLVM 21+
+class UnifyFunctionExitNodes
+{
+public:
+    UnifyFunctionExitNodes() = default;
+
+    bool runOnFunction(llvm::Function &F)
+    {
+        llvm::FunctionAnalysisManager FAM;
+        llvm::UnifyFunctionExitNodesPass pass;
+        pass.run(F, FAM);
+        return true;
+    }
+};
+#elif LLVM_VERSION_MAJOR >= 12
 typedef llvm::UnifyFunctionExitNodesLegacyPass UnifyFunctionExitNodes;
 #else
 typedef llvm::UnifyFunctionExitNodes UnifyFunctionExitNodes;
@@ -201,17 +217,29 @@ typedef llvm::MinMaxIntrinsic MinMaxIntrinsic;
 typedef llvm::BinaryOpIntrinsic BinaryOpIntrinsic;
 typedef llvm::WithOverflowInst WithOverflowInst;
 typedef llvm::SaturatingInst SaturatingInst;
+// In LLVM 21+, AtomicMem* types were removed, only AnyMem* types exist
+#if LLVM_VERSION_MAJOR >= 21
+typedef llvm::AnyMemIntrinsic AtomicMemIntrinsic;
+typedef llvm::AnyMemSetInst AtomicMemSetInst;
+typedef llvm::AnyMemTransferInst AtomicMemTransferInst;
+typedef llvm::AnyMemCpyInst AtomicMemCpyInst;
+typedef llvm::AnyMemMoveInst AtomicMemMoveInst;
+#else
 typedef llvm::AtomicMemIntrinsic AtomicMemIntrinsic;
 typedef llvm::AtomicMemSetInst AtomicMemSetInst;
 typedef llvm::AtomicMemTransferInst AtomicMemTransferInst;
 typedef llvm::AtomicMemCpyInst AtomicMemCpyInst;
 typedef llvm::AtomicMemMoveInst AtomicMemMoveInst;
+#endif
 typedef llvm::MemIntrinsic MemIntrinsic;
 typedef llvm::MemSetInst MemSetInst;
 typedef llvm::MemTransferInst MemTransferInst;
 typedef llvm::MemCpyInst MemCpyInst;
 typedef llvm::MemMoveInst MemMoveInst;
+// MemCpyInlineInst was removed in LLVM 21+
+#if LLVM_VERSION_MAJOR < 21
 typedef llvm::MemCpyInlineInst MemCpyInlineInst;
+#endif
 typedef llvm::AnyMemIntrinsic AnyMemIntrinsic;
 typedef llvm::AnyMemSetInst AnyMemSetInst;
 typedef llvm::AnyMemTransferInst AnyMemTransferInst;
