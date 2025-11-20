@@ -1,0 +1,137 @@
+<pre>../SVF/Debug-build/bin/wpa -ander -dump-icfg -dump-callgraph build/llvm_ir/simple_pointer.ll
+Writing 'icfg_initial.dot'...
+Writing 'callgraph_initial.dot'...</pre>
+
+*********General Stats***************
+################ (program : simple_pointer.ll)###############
+AddrsNum            32
+BBWith2Succ         1
+BBWith3Succ         0
+CallsNum            3
+ConstArrayObj       0
+ConstStructObj      0
+ConstantObj         0
+CopysNum            1
+FIObjNum            7
+FSObjNum            16
+FunctionObjs        6
+GepsNum             0
+GlobalObjs          1
+HeapObjs            1
+IndCallSites        0
+LoadsNum            10
+MaxStructSize       0
+NonPtrObj           15
+ReturnsNum          1
+StackObjs           15
+StoresNum           22
+TotalCallSite       4
+TotalFieldObjects   0
+TotalObjects        24
+TotalPTASVFStmts    56
+TotalPointers       104
+TotalSVFStmts       75
+VarArrayObj         0
+VarStructObj        0
+----------------Time and memory stats--------------------
+LLVMIRTime          0.012
+SVFIRTime           0.004
+SymbolTableTime     0.001
+#######################################################
+
+*********PTACallGraph Stats (Andersen analysis)***************
+################ (program : simple_pointer.ll)###############
+----------------Numbers stats----------------------------
+CalRetPairInCycle   0
+MaxNodeInCycle      0
+NodeInCycle         0
+TotalCycle          0
+TotalEdge           4
+TotalNode           6
+#######################################################
+
+*********Andersen Pointer Analysis Stats***************
+################ (program : simple_pointer.ll)###############
+----------------Time and memory stats--------------------
+AvgIn/OutAddrEdge   0.457143
+AvgIn/OutCopyEdge   0.342857
+AvgIn/OutEdge       1.07143
+AvgIn/OutLoadEdge   0.128571
+AvgIn/OutStoreEdge  0.142857
+AvgPtsSetSize       0.484375
+AvgTopLvlPtsSize    1.13889
+CollapseTime        0
+CopyGepTime         0
+LoadStoreTime       0
+MemoryUsageVmrss    0
+MemoryUsageVmsize   0
+SCCDetectTime       0
+SCCMergeTime        0
+TotalTime           0.002
+UpdateCGTime        0
+----------------Numbers stats----------------------------
+AddrProcessed       32
+CopyProcessed       23
+DummyFieldPtrs      0
+FieldObjs           0
+GepProcessed        0
+IndCallSites        0
+IndEdgeSolved       0
+LoadProcessed       9
+LocalVarInRecur     0
+MaxInAddrEdge       1
+MaxInCopyEdge       2
+MaxInLoadEdge       1
+MaxInStoreEdge      2
+MaxNodesInSCC       0
+MaxOutAddrEdge      10
+MaxOutCopyEdge      2
+MaxOutLoadEdge      2
+MaxOutStoreEdge     1
+MaxPtsSetSize       2
+MemObjects          24
+NodesInCycles       0
+NullPointer         0
+NumOfAddrs          32
+NumOfCGEdge         43
+NumOfCGNode         71
+NumOfCopys          24
+NumOfFieldExpand    0
+NumOfGeps           0
+NumOfLoads          9
+NumOfSCCDetect      3
+NumOfSFRs           0
+NumOfStores         10
+NumOfValidNode      70
+NumOfValidObjNode   23
+Pointers            104
+PointsToBlkPtr      0
+PointsToConstPtr    0
+SolveIterations     3
+StoreProcessed      10
+TotalCycleNum       0
+TotalObjects        24
+TotalPWCCycleNum    0
+TotalPointers       104
+#######################################################
+Writing 'callgraph_final.dot'...
+
+****Persistent Points-To Cache Statistics: Andersen's analysis bitvector****
+################ (program : simple_pointer.ll)###############
+UniquePointsToSets       26
+TotalUnions              59
+PropertyUnions           53
+UniqueUnions             2
+LookupUnions             0
+PreemptiveUnions         4
+TotalComplements         213
+PropertyComplements      213
+UniqueComplements        0
+LookupComplements        0
+PreemptiveComplements    0
+TotalIntersections       19
+PropertyIntersections    19
+UniqueIntersections      0
+LookupIntersections      0
+PreemptiveIntersections  0
+#######################################################
